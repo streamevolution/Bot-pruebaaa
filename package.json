@@ -9,8 +9,5 @@
   "dependencies": {
     "@adiwajshing/baileys": "^4.0.0",
     "pino": "^8.0.0"
-  },
-  "engines": {
-    "node": ">=16"
   }
 }
