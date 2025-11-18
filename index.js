@@ -26,14 +26,12 @@ async function startBot() {
       (msg.message.extendedTextMessage && msg.message.extendedTextMessage.text) ||
       '';
 
-    // Saludo único
     if (!greetedUsers.has(sender)) {
       greetedUsers.add(sender);
       await sock.sendMessage(sender, { text: '¡Hola! Bienvenido a Revolution Botcito. ¿En qué puedo ayudarte hoy?' });
       return;
     }
 
-    // Comandos de asesor
     if (messageContent.startsWith('/productos')) {
       await sock.sendMessage(sender, {
         image: { url: path.join(__dirname, 'media', 'producto1.jpg') },
