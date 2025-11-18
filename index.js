@@ -21,17 +21,19 @@ async function startBot() {
     if (!msg.message || msg.key.fromMe) return;
 
     const sender = msg.key.remoteJid;
-    const messageContent = 
+    const messageContent =
       msg.message.conversation ||
       (msg.message.extendedTextMessage && msg.message.extendedTextMessage.text) ||
       '';
 
+    // Saludo único
     if (!greetedUsers.has(sender)) {
       greetedUsers.add(sender);
       await sock.sendMessage(sender, { text: '¡Hola! Bienvenido a Revolution Botcito. ¿En qué puedo ayudarte hoy?' });
       return;
     }
 
+    // Comandos de asesor
     if (messageContent.startsWith('/productos')) {
       await sock.sendMessage(sender, {
         image: { url: path.join(__dirname, 'media', 'producto1.jpg') },
