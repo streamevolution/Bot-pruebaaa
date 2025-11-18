@@ -1,0 +1,16 @@
+{
+  "name": "revolution-botcito",
+  "version": "1.0.0",
+  "description": "Bot básico para WhatsApp llamado Revolution Botcito",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@adiwajshing/baileys": "^4.0.0",
+    "pino": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=16"
+  }
+}
