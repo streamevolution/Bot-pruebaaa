@@ -21,29 +21,30 @@ async function startBot() {
     if (!msg.message || msg.key.fromMe) return;
 
     const sender = msg.key.remoteJid;
-    const messageContent = msg.message.conversation || msg.message.extendedTextMessage?.text;
+    const messageContent = 
+      msg.message.conversation ||
+      (msg.message.extendedTextMessage && msg.message.extendedTextMessage.text) ||
+      '';
 
+    // Saludo único
     if (!greetedUsers.has(sender)) {
       greetedUsers.add(sender);
       await sock.sendMessage(sender, { text: '¡Hola! Bienvenido a Revolution Botcito. ¿En qué puedo ayudarte hoy?' });
       return;
     }
 
-    if (!messageContent) return;
-
+    // Comandos de asesor
     if (messageContent.startsWith('/productos')) {
-      if (messageContent.startsWith('/productos')) {
-  await sock.sendMessage(sender, {
-    image: { url: path.join(__dirname, 'media', 'producto1.jpg') },
-    caption: 'Producto 1 - $100
+      await sock.sendMessage(sender, {
+        image: { url: path.join(__dirname, 'media', 'producto1.jpg') },
+        caption: 'Producto 1 - $100
 Producto 2 - $200
 Más productos en nuestro catálogo.'
-  });
-}
+      });
     } else if (messageContent.startsWith('/ofertas')) {
       await sock.sendMessage(sender, {
         video: { url: path.join(__dirname, 'media', 'oferta.mp4') },
-        caption: '¡Oferta especial del día! 20% de descuento en todos los productos.',
+        caption: '¡Oferta especial del día! 20% de descuento en todos los productos.'
       });
     } else if (messageContent.startsWith('/contacto')) {
       await sock.sendMessage(sender, { text: 'Puedes contactarme al teléfono: +123456789
