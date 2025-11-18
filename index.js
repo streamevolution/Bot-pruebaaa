@@ -32,12 +32,14 @@ async function startBot() {
     if (!messageContent) return;
 
     if (messageContent.startsWith('/productos')) {
-      await sock.sendMessage(sender, {
-        image: { url: path.join(__dirname, 'media', 'producto1.jpg') },
-        caption: 'Producto 1 - $100
+      if (messageContent.startsWith('/productos')) {
+  await sock.sendMessage(sender, {
+    image: { url: path.join(__dirname, 'media', 'producto1.jpg') },
+    caption: 'Producto 1 - $100
 Producto 2 - $200
-Más productos en nuestro catálogo.',
-      });
+Más productos en nuestro catálogo.'
+  });
+}
     } else if (messageContent.startsWith('/ofertas')) {
       await sock.sendMessage(sender, {
         video: { url: path.join(__dirname, 'media', 'oferta.mp4') },
